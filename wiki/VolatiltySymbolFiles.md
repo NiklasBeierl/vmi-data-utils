@@ -19,13 +19,13 @@ $ ar x path/to/package.ddeb
 $ mkdir ./data
 $ tar -xf data.tar.xz -C data
 ```
-**NOTE**: Most tools handle most compressions out of the box. There might be problems with `zst`.
+**NOTE**: Most tools handle most compressions out of the box. There might be problems with `zst`.  
 3. Find the actual ELF with the debugging symbols in `./data`.
 ```shell
 $ find ./data | grep vmlinux-
 ```
 Should print something like:
-`./data/usr/lib/debug/boot/vmlinux-3.13.0-24-generic`
+`./data/usr/lib/debug/boot/vmlinux-3.13.0-24-generic`  
 4. Make sure you actually got an ELF file:
 ```shell
 $ file ./data/usr/lib/debug/boot/vmlinux-3.13.0-24-generic
