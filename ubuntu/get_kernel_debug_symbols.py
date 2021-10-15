@@ -84,14 +84,14 @@ def extract(deb_file: io.BytesIO):
 
 
 def main():
-    parser = ArgumentParser()
+    parser = ArgumentParser(description="Utility for downloading and extracting debugging symbols for ubuntu kernels.")
     parser.add_argument("-r", "--rescrape", action="store_true", default=False,
                         help=f"Re-scrape list of debugging symbols from {ALL_PACKAGES_URL}. "
                              f"The list is stored and looked for at {CACHE_PATH}")
     parser.add_argument("-l", "--list-versions", action="store_true", default=False,
-                        help=f"List available versions and exit. ")
+                        help=f"List available kernel versions and exit.")
     parser.add_argument("-k", "--kernel-version", action="store",
-                        help="Download and extract debugging symbols for this kernel version.")
+                        help="Download and extract debugging symbols for this kernel version. (only -generic kernels.)")
     args = parser.parse_args()
 
     cache_path = pathlib.Path(CACHE_PATH).resolve()

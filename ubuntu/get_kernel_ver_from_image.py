@@ -84,7 +84,11 @@ def parse_kernel_version(kernel_path: str) -> str:
 
 def main():
     prepare_nbd()
-    parser = ArgumentParser()
+    parser = ArgumentParser(
+        description="Mounts a ubuntu cloud image file, tries to determine the kernel version inside it and cleans "
+                    "up after itself. (Except for unloading the nbd module, that is up to you.)"
+                    "Requires 'qemu-nbd' to be installed and needs to be run with root privileges."
+    )
     parser.add_argument("image_file", help="Path to ubuntu cloud image file")
     args = parser.parse_args()
     image_path = Path(args.image_file)
