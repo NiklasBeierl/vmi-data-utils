@@ -3,7 +3,7 @@
 ... can be downloaded here: http://cloud-images.ubuntu.com/releases/
 There is also a (s)ftp server at cloud-images.ubuntu.com, but it apparently only has a subset of the files available and uses a different directory structure. 🤷🏼
 
-**Note**: For some releases, there are image files called `<something>-kvm.img`. Counterintuitively, we did not succeed in setting them up on qemu/kvm. Also note that they are likely not using `-generic` kernel, thus likely require different debugging symbols!
+**Note**: For some releases, there are image files called `<something>-kvm.img`. Counterintuitively, we did not succeed in setting them up on qemu/kvm. Also note that they are likely not using `-generic` kernels, thus likely require different debugging symbols!
 
 # Kernel debug symbols:
 To determine the version of the kernel contained in the image see [General.md](../General.md).  
