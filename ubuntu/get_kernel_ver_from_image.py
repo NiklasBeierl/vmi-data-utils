@@ -15,7 +15,9 @@ def prepare_nbd():
     try:
         check_output(cmd)
     except CalledProcessError:
-        raise Exception(f"Failed to load nbd kernel module with command: {' '.join(cmd)}")
+        raise Exception(
+            f"Failed to load nbd kernel module with command: {' '.join(cmd)}"
+        )
 
 
 def auto_connect(file_path: str):
@@ -36,7 +38,9 @@ def auto_connect(file_path: str):
         check_output(cmd)
         print(f"Connected {file_path} with {target_device}")
     except CalledProcessError:
-        raise Exception(f"Failed to connect file to nbd device with command: {' '.join(cmd)}")
+        raise Exception(
+            f"Failed to connect file to nbd device with command: {' '.join(cmd)}"
+        )
 
     return target_device
 
@@ -71,8 +75,10 @@ def unmount(mount_point: str):
 def find_kernel(image_mount_path: Path) -> str:
     candidates = list(Path(image_mount_path, "./boot").glob("vmlinuz-*"))
     if len(candidates) != 1:
-        raise ValueError("Could not figure out kernel file. Candidates: "
-                         f"{[str(c.relative_to(image_mount_path)) for c in candidates]}")
+        raise ValueError(
+            "Could not figure out kernel file. Candidates: "
+            f"{[str(c.relative_to(image_mount_path)) for c in candidates]}"
+        )
 
     print(f"Found kernel: {candidates[0]}")
     return str(candidates[0].relative_to(image_mount_path))
@@ -86,8 +92,8 @@ def main():
     prepare_nbd()
     parser = ArgumentParser(
         description="Mounts a ubuntu cloud image file, tries to determine the kernel version inside it and cleans "
-                    "up after itself. (Except for unloading the nbd module, that is up to you.)"
-                    "Requires 'qemu-nbd' to be installed and needs to be run with root privileges."
+        "up after itself. (Except for unloading the nbd module, that is up to you.)"
+        "Requires 'qemu-nbd' to be installed and needs to be run with root privileges."
     )
     parser.add_argument("image_file", help="Path to ubuntu cloud image file")
     args = parser.parse_args()
